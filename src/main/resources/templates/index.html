@@ -1,0 +1,25 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form th:action="@{/}" th:method="get" th:object="${cylinder}">
+            <label for="height">Высота</label>
+            <input name="height" th:placeholder="*{height}" th:field="*{height}" class="form-control" id="height"><br/>
+            <p th:if="${#fields.hasErrors('height')}" th:errors="*{height}">Height error</p>
+            <label for="radius">Радиус</label>
+            <input name="radius"  th:placeholder="*{radius}"  th:field="*{radius}" class="form-control" id="radius"><br>
+            <p th:if="${#fields.hasErrors('radius')}" th:errors="*{radius}">Radius error</p>
+            <label>Объем</label>
+            <input name="volume" disabled th:field="*{volume}" class="form-control" id="volume"><br>
+            <button class="w-100 btn btn-primary btn-lg" >Вычислить объем</button>
+        </form>
+    </div>
+</body>
+</html>
