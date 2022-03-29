@@ -1,5 +1,6 @@
 package com.example.cylinder.controllers;
 import com.example.cylinder.code.Cylinder;
+import com.example.cylinder.exceptions.ServiceException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,14 @@ public class CylinderController {
     }
 
     @GetMapping("/get")
-    public String countedView(@RequestParam(required = true) double height, @RequestParam(required = true) double radius, Model model){
+    public String countedView(@RequestParam(required = true) double height,
+                              @RequestParam(required = true) double radius,
+                              Model model) throws ServiceException {
         Cylinder cylinder =new Cylinder(height, radius);
         model.addAttribute("height", cylinder.getHeight());
         model.addAttribute("radius", cylinder.getRadius());
+        if(radius<0 || height<0)
+            throw new ServiceException("height and radius should be more than 0");
         model.addAttribute("volume",cylinder.getVolume());
         return "index";
     }
