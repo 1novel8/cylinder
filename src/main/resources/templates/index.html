@@ -9,15 +9,13 @@
 </head>
 <body>
     <div>
-        <form th:action="@{/}" th:method="get" th:object="${cylinder}">
+        <form action="/get" th:method="get">
             <label for="height">Высота</label>
-            <input name="height" th:placeholder="*{height}" th:field="*{height}" class="form-control" id="height"><br/>
-            <p th:if="${#fields.hasErrors('height')}" th:errors="*{height}">Height error</p>
+            <input name="height" th:placeholder="${height}" th:value="${height}" class="form-control" id="height"><br/>
             <label for="radius">Радиус</label>
-            <input name="radius"  th:placeholder="*{radius}"  th:field="*{radius}" class="form-control" id="radius"><br>
-            <p th:if="${#fields.hasErrors('radius')}" th:errors="*{radius}">Radius error</p>
+            <input name="radius"  th:placeholder="${radius}"  th:value="${radius}" class="form-control" id="radius"><br>
             <label>Объем</label>
-            <input name="volume" disabled th:field="*{volume}" class="form-control" id="volume"><br>
+            <input name="volume" disabled th:value="${volume}" class="form-control" id="volume"><br>
             <button class="w-100 btn btn-primary btn-lg" >Вычислить объем</button>
         </form>
     </div>

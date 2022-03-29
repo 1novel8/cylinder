@@ -7,19 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
-
 @Controller
 public class CylinderController {
     @GetMapping("/")
-    public String homeView(@ModelAttribute("cylinder") @Valid Cylinder cylinder, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
-            return "index";
+    public String homeView(Model model){
+        model.addAttribute("volume", "0");
         return "index";
     }
-//    @GetMapping("/get")
-//    public String countedView(@ModelAttribute("cylinder") Cylinder cylinder){
-//        return "index";
-//    }
+
+    @GetMapping("/get")
+    public String countedView(@RequestParam(required = true) double height, @RequestParam(required = true) double radius, Model model){
+        Cylinder cylinder =new Cylinder(height, radius);
+        model.addAttribute("height", cylinder.getHeight());
+        model.addAttribute("radius", cylinder.getRadius());
+        model.addAttribute("volume",cylinder.getVolume());
+        return "index";
+    }
 }
 
