@@ -17,14 +17,15 @@ public class CylinderController {
     }
 
     @GetMapping("/get")
-    public String countedView(@RequestParam(required = true) double height,
-                              @RequestParam(required = true) double radius,
+    public String countedView(@RequestParam() double height,
+                              @RequestParam() double radius,
                               Model model) throws ServiceException {
         Cylinder cylinder =new Cylinder(height, radius);
         model.addAttribute("height", cylinder.getHeight());
         model.addAttribute("radius", cylinder.getRadius());
-        if(radius<0 || height<0)
+        if(radius<0 || height<0) {
             throw new ServiceException("height and radius should be more than 0");
+        }
         model.addAttribute("volume",cylinder.getVolume());
         return "index";
     }
