@@ -17,8 +17,8 @@ public class CylinderController {
     }
 
     @GetMapping("/get")
-    public String countedView(@RequestParam() double height,
-                              @RequestParam() double radius,
+    public String countedView(@RequestParam(name="height") double height,
+                              @RequestParam(name="radius") double radius,
                               Model model) throws ServiceException {
         Cylinder cylinder =new Cylinder(height, radius);
         model.addAttribute("height", cylinder.getHeight());
