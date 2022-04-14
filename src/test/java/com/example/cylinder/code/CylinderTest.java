@@ -17,19 +17,23 @@ class CylinderTest {
 
     @Test
     void getHeight() {
-        Cylinder cylinder= new Cylinder(1, 2 );
-        assertEquals(1, cylinder.getHeight());
+        Cylinder cylinder= new Cylinder();
+        cylinder.setHeight(1.);
+        assertEquals(1., cylinder.getHeight());
     }
 
     @Test
     void getRadius() {
-        Cylinder cylinder= new Cylinder(1, 2 );
-        assertEquals(2, cylinder.getRadius());
+        Cylinder cylinder= new Cylinder();
+        cylinder.setRadius(2.);
+        assertEquals(2., cylinder.getRadius());
     }
 
     @Test
     void getVolume() {
-        Cylinder cylinder= new Cylinder(1, 2 );
+        Cylinder cylinder= new Cylinder();
+        cylinder.setHeight(1.);
+        cylinder.setRadius(2.);
         assertEquals(12.56, cylinder.getVolume());
     }
 }
