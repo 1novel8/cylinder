@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class CylinderController {
     private final Cylinder cylinder=new Cylinder();
     private final Cache cache=new Cache();
+    private final Counter counter=new Counter();
 
     @GetMapping("/")
     public String homeView(Model model){
@@ -22,16 +23,20 @@ public class CylinderController {
     public String countedView(@RequestParam(name="height") double height,
                               @RequestParam(name="radius") double radius,
                               Model model) throws ServiceException {
+        counter.increase();
+
         cylinder.setHeight(height);
         cylinder.setRadius(radius);
+
 
         if(radius<0 || height<0) {
             throw new ServiceException("height and radius should be more than 0");
         }
+
         model.addAttribute("height", cylinder.getHeight());
         model.addAttribute("radius", cylinder.getRadius());
-
         model.addAttribute("volume",cache.getValue(cylinder));
+
         return "index";
     }
 }

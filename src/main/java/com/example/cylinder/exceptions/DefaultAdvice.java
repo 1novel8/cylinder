@@ -14,6 +14,11 @@ import java.rmi.ServerException;
 @RestControllerAdvice
 public class DefaultAdvice extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(ServiceException.class)
+    public ResponseEntity<ExceptionResponse> handleException(ServiceException e) {
+        logger.error("ERROR CODE 400", e);
+        return new ResponseEntity<>(new ExceptionResponse(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
     @ExceptionHandler(ServerException.class)
     public ResponseEntity<ExceptionResponse> handleException(ServerException e) {
         logger.error("ERROR CODE 400", e);
