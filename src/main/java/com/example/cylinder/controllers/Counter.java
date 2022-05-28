@@ -17,5 +17,4 @@ public class Counter {
     public Counter(){
         this.counter=0;
     }
-
 }

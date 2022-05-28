@@ -15,7 +15,6 @@ public class Cache {
     public Cache(){
         map=new HashMap<Pair<Double, Double>, Double>();
     }
-    @Autowired
     public Double getValue(Cylinder cylinder){
 
         Pair<Double, Double> pair = new ImmutablePair<>(cylinder.getHeight(), cylinder.getRadius());
